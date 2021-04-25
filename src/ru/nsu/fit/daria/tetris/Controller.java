@@ -1,6 +1,6 @@
 package ru.nsu.fit.daria.tetris;
-import java.util.Random;
 
+import java.util.Random;
 import static ru.nsu.fit.daria.tetris.Tetris.*;
 
 public class Controller {

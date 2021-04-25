@@ -2,7 +2,6 @@ package ru.nsu.fit.daria.tetris;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-
 import static ru.nsu.fit.daria.tetris.Tetris.*;
 
 public class Shape {
@@ -84,7 +83,6 @@ public class Shape {
                     if (canMoveA == 0 && canMoveB == 0 && canMoveC == 0 && canMoveD == 0) {
                         move(MOVE);
                     }
-                    break;
                 }
                 break;
 
@@ -98,7 +96,6 @@ public class Shape {
                     if (canMoveA == 0 && canMoveB == 0 && canMoveC == 0 && canMoveD == 0) {
                         move((-1) * MOVE);
                     }
-                    break;
                 }
                 break;
 

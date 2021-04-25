@@ -2,7 +2,6 @@ package ru.nsu.fit.daria.tetris;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-
 import static ru.nsu.fit.daria.tetris.Tetris.SIZE;
 import static ru.nsu.fit.daria.tetris.Tetris.XMAX;
 

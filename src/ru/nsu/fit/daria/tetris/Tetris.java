@@ -23,7 +23,7 @@ public class Tetris extends Application{
     protected static int [][] MESH = new int [XMAX/SIZE][YMAX/SIZE];
     private final Pane group = new Pane();
     private Shape object;
-    private final Scene scene = new Scene(group, XMAX+150, YMAX);
+    private final Scene scene = new Scene(group, XMAX + 150, YMAX);
     private static int score = 0;
     private static int top = 0;
     private static boolean game  = true;
