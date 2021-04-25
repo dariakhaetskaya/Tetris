@@ -6,29 +6,21 @@ import javafx.scene.shape.Rectangle;
 import static ru.nsu.fit.daria.tetris.Tetris.*;
 
 public class Shape {
-
-    Rectangle a;
-    Rectangle b;
-    Rectangle c;
-    Rectangle d;
+    protected Rectangle a;
+    protected Rectangle b;
+    protected Rectangle c;
+    protected Rectangle d;
 
     Color color;
     String name;
 
     public int form = 1;
 
-    public Shape(Rectangle a, Rectangle b, Rectangle c, Rectangle d) {
-        this.a = a;
-        this.b = b;
-        this.c = c;
-        this.d = d;
-    }
-
     public Shape() {
-    }
-
-    public String getName(){
-        return name;
+         a = new Rectangle(SIZE - 1, SIZE - 1);
+         b = new Rectangle(SIZE - 1, SIZE - 1);
+         c = new Rectangle(SIZE - 1, SIZE - 1);
+         d = new Rectangle(SIZE - 1, SIZE - 1);
     }
 
     private void move(int MOVE) {

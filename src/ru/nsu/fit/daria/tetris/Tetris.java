@@ -2,18 +2,14 @@ package ru.nsu.fit.daria.tetris;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
 import javafx.scene.shape.Line;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Timer;
@@ -23,7 +19,7 @@ public class Tetris extends Application{
     public static final int MOVE = 25;
     public static final int SIZE = 25;
     public static final int XMAX = SIZE * 12;
-    public static final int YMAX = SIZE*24;
+    public static final int YMAX = SIZE * 24;
     protected static int [][] MESH = new int [XMAX/SIZE][YMAX/SIZE];
     private final Pane group = new Pane();
     private Shape object;
@@ -33,26 +29,6 @@ public class Tetris extends Application{
     private static boolean game  = true;
     private static int linesNo = 0;
     private Shape nextObj = Controller.makeRect();
-
-    public static int getMOVE(){
-        return MOVE;
-    }
-
-    public static int getSIZE(){
-        return SIZE;
-    }
-
-    public static int getXMAX(){
-        return XMAX;
-    }
-
-    public static int getYMAX(){
-        return YMAX;
-    }
-
-    public static int[][] getMESH(){
-        return MESH;
-    }
 
     public static void main(String[] args){
         launch(args);
@@ -91,34 +67,31 @@ public class Tetris extends Application{
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
-                Platform.runLater( new Runnable() {
-                    @Override
-                    public void run() {
-                        if (object.a.getY() == 0 || object.b.getY() == 0 || object.c.getY() == 0 || object.d.getY() == 0){
-                            top++;
-                        } else {
-                            top = 0;
-                        }
+                Platform.runLater(() -> {
+                    if (object.a.getY() == 0 || object.b.getY() == 0 || object.c.getY() == 0 || object.d.getY() == 0){
+                        top++;
+                    } else {
+                        top = 0;
+                    }
 
-                        if (top == 2){
-                            Text over = new Text("GAME OVER");
-                            over.setFill(Color.RED);
-                            over.setStyle("-fx-font: 70 arial");
-                            over.setX(10);
-                            over.setY(300);
-                            group.getChildren().add(over);
-                            game = false;
-                        }
+                    if (top == 2){
+                        Text over = new Text("GAME OVER");
+                        over.setFill(Color.RED);
+                        over.setStyle("-fx-font: 70 arial");
+                        over.setX(10);
+                        over.setY(300);
+                        group.getChildren().add(over);
+                        game = false;
+                    }
 
-                        if (top == 15){
-                            System.exit(0);
-                        }
+                    if (top == 15){
+                        System.exit(0);
+                    }
 
-                        if (game){
-                            moveDown(object);
-                            scoreText.setText("Score: " + score);
-                            level.setText("Lines: " + linesNo);
-                        }
+                    if (game){
+                        moveDown(object);
+                        scoreText.setText("Score: " + score);
+                        level.setText("Lines: " + linesNo);
                     }
                 });
             }
@@ -160,8 +133,6 @@ public class Tetris extends Application{
             count = 0;
         }
 
-        // remove
-
         while (lines.size() > 0){
             for (Node node : pane.getChildren()){
                 if (node instanceof Rectangle){
@@ -199,52 +170,26 @@ public class Tetris extends Application{
 
             for (Node node : rectangles){
                 Rectangle a = (Rectangle) node;
-                try {
-                    // TODO проверка
-                    MESH[((int) a.getX())/SIZE][((int)a.getY())/SIZE] = 1;
-                } catch (ArrayIndexOutOfBoundsException e){
-                    continue;
-                }
-
+                MESH[((int) a.getX())/SIZE][((int)a.getY())/SIZE] = 1;
             }
             rectangles.clear();
         }
     }
 
-    private boolean cB(Rectangle rect, int x, int y) {
-        boolean xb = false;
-        boolean yb = false;
-        if (x >= 0)
-            xb = rect.getX() + x * MOVE <= XMAX - SIZE;
-        if (x < 0)
-            xb = rect.getX() + x * MOVE >= 0;
-        if (y >= 0)
-            yb = rect.getY() - y * MOVE > 0;
-        if (y < 0)
-            yb = rect.getY() + y * MOVE < YMAX;
-        return xb && yb && MESH[((int) rect.getX() / SIZE) + x][((int) rect.getY() / SIZE) - y] == 0;
-    }
-
     private void moveDown(Shape form) {
-        try{
-            if (form.a.getY() == YMAX - SIZE || form.b.getY() == YMAX - SIZE || form.c.getY() == YMAX - SIZE
-                    || form.d.getY() == YMAX - SIZE || moveA(form) || moveB(form) || moveC(form) || moveD(form)) {
-                MESH[(int) form.a.getX() / SIZE][(int) form.a.getY() / SIZE] = 1;
-                MESH[(int) form.b.getX() / SIZE][(int) form.b.getY() / SIZE] = 1;
-                MESH[(int) form.c.getX() / SIZE][(int) form.c.getY() / SIZE] = 1;
-                MESH[(int) form.d.getX() / SIZE][(int) form.d.getY() / SIZE] = 1;
-                removeRows(group);
+        if (form.a.getY() == YMAX - SIZE || form.b.getY() == YMAX - SIZE || form.c.getY() == YMAX - SIZE
+                || form.d.getY() == YMAX - SIZE || moveA(form) || moveB(form) || moveC(form) || moveD(form)) {
+            MESH[(int) form.a.getX() / SIZE][(int) form.a.getY() / SIZE] = 1;
+            MESH[(int) form.b.getX() / SIZE][(int) form.b.getY() / SIZE] = 1;
+            MESH[(int) form.c.getX() / SIZE][(int) form.c.getY() / SIZE] = 1;
+            MESH[(int) form.d.getX() / SIZE][(int) form.d.getY() / SIZE] = 1;
+            removeRows(group);
 
-                Shape currentObj = nextObj;
-                nextObj = Controller.makeRect();
-                object = currentObj;
-                if (group.getChildren() != null) {
-                    group.getChildren().addAll(currentObj.a, currentObj.b, currentObj.c, currentObj.d);
-                }
-                moveOnKeyPress(currentObj);
-            }
-        } catch (NullPointerException e){
-            e.printStackTrace();
+            Shape currentObj = nextObj;
+            nextObj = Controller.makeRect();
+            object = currentObj;
+            group.getChildren().addAll(currentObj.a, currentObj.b, currentObj.c, currentObj.d);
+            moveOnKeyPress(currentObj);
         }
 
         if (form.a.getY() + MOVE < YMAX && form.b.getY() + MOVE < YMAX && form.c.getY() + MOVE < YMAX

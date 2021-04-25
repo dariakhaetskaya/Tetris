@@ -3,18 +3,25 @@ package ru.nsu.fit.daria.tetris;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-import static ru.nsu.fit.daria.tetris.Controller.SIZE;
-import static ru.nsu.fit.daria.tetris.Controller.XMAX;
+import static ru.nsu.fit.daria.tetris.Tetris.SIZE;
+import static ru.nsu.fit.daria.tetris.Tetris.XMAX;
 
 public class ShapeI extends Shape{
-    ShapeI(Rectangle a, Rectangle b, Rectangle c, Rectangle d){
-        var shape = new Shape(a, b, c, d);
-        shape.a.setX(XMAX / 2 - SIZE - SIZE);
-        shape.b.setX(XMAX / 2 - SIZE);
-        shape.c.setX(XMAX / 2);
-        shape.d.setX(XMAX / 2 + SIZE);
-        shape.name = "i";
-        shape.color = Color.SANDYBROWN;
+    ShapeI(){
+        this.a = new Rectangle(Tetris.SIZE - 1, Tetris.SIZE - 1);
+        this.b = new Rectangle(Tetris.SIZE - 1, Tetris.SIZE - 1);
+        this.c = new Rectangle(Tetris.SIZE - 1, Tetris.SIZE - 1);
+        this.d = new Rectangle(Tetris.SIZE - 1, Tetris.SIZE - 1);
+        this.a.setX(XMAX / 2.0 - SIZE - SIZE);
+        this.b.setX(XMAX / 2.0 - SIZE);
+        this.c.setX(XMAX / 2.0);
+        this.d.setX(XMAX / 2.0 + SIZE);
+        this.name = "i";
+        this.color = Color.SANDYBROWN;
+        this.a.setFill(color);
+        this.b.setFill(color);
+        this.c.setFill(color);
+        this.d.setFill(color);
     }
 
     @Override
@@ -22,7 +29,6 @@ public class ShapeI extends Shape{
         int f = this.form;
         Rectangle a = this.a;
         Rectangle b = this.b;
-        Rectangle c = this.c;
         Rectangle d = this.d;
 
         if (f == 1 && cB(a, 2, 2) && cB(b, 1, 1) && cB(d, -1, -1)) {

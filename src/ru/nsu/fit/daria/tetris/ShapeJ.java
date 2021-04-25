@@ -3,22 +3,21 @@ package ru.nsu.fit.daria.tetris;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-import static ru.nsu.fit.daria.tetris.Controller.*;
 import static ru.nsu.fit.daria.tetris.Tetris.SIZE;
 import static ru.nsu.fit.daria.tetris.Tetris.XMAX;
 
 public class ShapeJ extends Shape{
-    ShapeJ(Rectangle a, Rectangle b, Rectangle c, Rectangle d){
-        this.a = a;
-        this.b = b;
-        this.c = c;
-        this.d = d;
-        this.a.setX(XMAX / 2 - SIZE);
-        this.b.setX(XMAX / 2 - SIZE);
+    ShapeJ(){
+        this.a = new Rectangle(SIZE - 1, SIZE - 1);
+        this.b = new Rectangle(SIZE - 1, SIZE - 1);
+        this.c = new Rectangle(SIZE - 1, SIZE - 1);
+        this.d = new Rectangle(SIZE - 1, SIZE - 1);
+        this.a.setX(XMAX / 2.0 - SIZE);
+        this.b.setX(XMAX / 2.0 - SIZE);
         this.b.setY(SIZE);
-        this.c.setX(XMAX / 2);
+        this.c.setX(XMAX / 2.0);
         this.c.setY(SIZE);
-        this.d.setX(XMAX / 2 + SIZE);
+        this.d.setX(XMAX / 2.0 + SIZE);
         this.d.setY(SIZE);
         this.name = "j";
         this.color = Color.SLATEGREY;
@@ -32,7 +31,6 @@ public class ShapeJ extends Shape{
     public void turn(){
         int f = this.form;
         Rectangle a = this.a;
-        Rectangle b = this.b;
         Rectangle c = this.c;
         Rectangle d = this.d;
 
